@@ -13,6 +13,9 @@
 <h2>Home Page</h2>
 <a href="${pageContext.request.contextPath }/user/showRegistrationForm" class="btn btn-secondary">Register</a>
 <hr>
+<a href="${pageContext.request.contextPath }/user/showLoginForm" class="btn btn-primary">Login</a>
+<hr>
 <a href="${pageContext.request.contextPath }/user/listOfUsers" class="btn btn-info">List Of Users</a>
+
 </body>
 </html>

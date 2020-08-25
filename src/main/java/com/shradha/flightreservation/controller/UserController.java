@@ -27,6 +27,10 @@ public class UserController {
 	public String showRegistrationForm() {
 		return "login/registerUser";
 	}
+	@GetMapping("showLoginForm")
+	public String showLoginForm() {
+		return "login/login";
+	}
 	
 	@PostMapping("/registerUser")
 	public String userRegistration(@ModelAttribute("user") User user) {
