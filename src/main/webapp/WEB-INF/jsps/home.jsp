@@ -16,6 +16,8 @@
 <a href="${pageContext.request.contextPath }/user/showLoginForm" class="btn btn-primary">Login</a>
 <hr>
 <a href="${pageContext.request.contextPath }/user/listOfUsers" class="btn btn-info">List Of Users</a>
+<hr>
+<a href="${pageContext.request.contextPath }/showAddFlightDetailsForm" class="btn btn-warning">Add Flight Details</a>
 
 </body>
 </html>

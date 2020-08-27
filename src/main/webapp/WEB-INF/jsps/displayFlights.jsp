@@ -23,6 +23,7 @@
 				<th scope="col">Departure City</th>
 				<th scope="col">Arrival City</th>
 				<th scope="col">Departure Time</th>
+				<th scope="col">Estimated Departure Time</th>
 				<th scope="col">Action</th>
 				
 			</tr>
@@ -34,6 +35,7 @@
 				<td>${tempFlights.operatingAirlines }</td>
 				<td>${tempFlights.departureCity }</td>
 				<td>${tempFlights.arrivalCity }</td>
+				<td>${tempFlights.dateOfDeparture }</td>
 				<td>${tempFlights.estimatedDepartureTime }</td>
 				<td>
 				<a href="showCompleteReservation?flightId=${tempFlights.id }" class="btn btn-warning">Select</a>

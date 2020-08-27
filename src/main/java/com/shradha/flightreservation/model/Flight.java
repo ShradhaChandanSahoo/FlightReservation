@@ -1,12 +1,18 @@
 package com.shradha.flightreservation.model;
 
-import java.sql.Timestamp;
+
+
 import java.util.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+
 
 import lombok.Data;
 
@@ -21,6 +27,8 @@ public class Flight {
 	private String operatingAirlines;
 	private String departureCity;
 	private String arrivalCity;
+	@Temporal(TemporalType.DATE)
 	private Date dateOfDeparture;
-	private Timestamp estimatedDepartureTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date estimatedDepartureTime;
 }

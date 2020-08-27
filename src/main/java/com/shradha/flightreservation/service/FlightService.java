@@ -9,4 +9,6 @@ public interface FlightService {
 	
 	public List<Flight> findFlights(String from,String to,Date departureDate);
 
+	public void addFlightInformations(Flight flight);
+
 }
