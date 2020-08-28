@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,7 @@
 <body>
 <h2>Find Flights</h2>
 <form action="/findFlights" method="post">
+
 <pre>
 <input type="text" name="from" placeholder="FROM" class="form-control" />
 <input type="text" name="to" placeholder="TO" class="form-control" />

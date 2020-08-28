@@ -30,7 +30,7 @@
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">Date Of Departure</label> <input
-				type="date" class="form-control" id="dateOfDeparture" name="dateOfDeparture">
+				type="text" class="form-control" id="dateOfDeparture" name="dateOfDeparture">
 		</div>
 		<input type="submit" value="Search" class="btn btn-primary">
 	</form>

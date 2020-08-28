@@ -11,4 +11,6 @@ public interface FlightService {
 
 	public void addFlightInformations(Flight flight);
 
+	public Flight findOneById(Long flightId);
+
 }

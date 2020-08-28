@@ -2,10 +2,12 @@ package com.shradha.flightreservation.service;
 
 import java.sql.Timestamp;
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,11 +46,26 @@ public class FlightServiceImpl implements FlightService {
 			flight.setEstimatedDepartureTime(parse);
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		flightRepo.save(flight);
 
+	}
+
+	@Override
+	public Flight findOneById(Long flightId) {
+		
+		Optional<Flight> theFlightId = flightRepo.findById(flightId);
+		
+		if(theFlightId.isPresent()) {
+			Flight theFlight = theFlightId.get();
+			return theFlight;
+		}else {
+			throw new RuntimeException("Flight Id Not Present");
+		}
+		
+		
 	}
 
 }

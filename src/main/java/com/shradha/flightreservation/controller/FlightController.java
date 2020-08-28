@@ -46,5 +46,12 @@ public class FlightController {
 		flightService.addFlightInformations(flight);
 		return "displayFlights";
 	}
+	
+	@GetMapping("/showCompleteReservation")
+	public String showCompleteReservation(@RequestParam("flightId") Long flightId,Model theModel) {
+		Flight theFlight = flightService.findOneById(flightId);
+		theModel.addAttribute("flight", theFlight);
+		return "completeReservation";
+	}
 
 }
