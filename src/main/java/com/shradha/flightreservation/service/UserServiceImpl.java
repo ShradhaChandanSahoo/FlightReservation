@@ -32,4 +32,18 @@ public class UserServiceImpl implements UserService {
 		return oneUser;
 	}
 
+	@Override
+	public boolean isExistByEmail(String uemail) {
+		Integer count = userRepo.getUserEmailCount(uemail);
+		return count>0?true:false;
+	}
+
+	@Override
+	public boolean isUserExistByFirstName(String ufirstname) {
+		
+		Integer count = userRepo.getUserFirstNameCount(ufirstname);
+		System.out.println(count);
+		return count>0?true:false;
+	}
+
 }

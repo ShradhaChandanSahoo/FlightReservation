@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shradha.flightreservation.model.User;
 import com.shradha.flightreservation.service.UserService;
@@ -36,6 +37,28 @@ public class UserController {
 	public String userRegistration(@ModelAttribute("user") User user) {
 		userService.saveUserRegistration(user);
 		return "login/login";
+	}
+	
+	@GetMapping("/valiadteEmail")
+	public @ResponseBody String validateEmail(@RequestParam String uemail) {
+		
+		String message = "";
+		if(userService.isExistByEmail(uemail)) {
+			message = uemail+" is Exist";
+		}
+		return message;
+	}
+	
+	@GetMapping("/validateFirstName")
+	public @ResponseBody String validateFirstName(@RequestParam("ufirstname") String ufirstname ) {
+		String message = "";
+		
+		if(userService.isUserExistByFirstName(ufirstname)) {
+			message = "This "+ufirstname+" is already exist";		
+		}
+		
+		return message;
+		
 	}
 	
 	@GetMapping("/listOfUsers")
