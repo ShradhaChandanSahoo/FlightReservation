@@ -56,5 +56,17 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		return savedReservation;
 	}
+	
+	@Override
+	public Reservation findReservationById(Long id) {
+		
+		return reservationRepo.findById(id).get();
+	}
+	
+	@Override
+	public Reservation saveUpdateReservation(Reservation reservation) {
+		
+		return reservationRepo.save(reservation);
+	}
 
 }
