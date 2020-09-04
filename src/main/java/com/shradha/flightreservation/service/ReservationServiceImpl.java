@@ -2,6 +2,7 @@ package com.shradha.flightreservation.service;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import com.shradha.flightreservation.model.Reservation;
 import com.shradha.flightreservation.repository.FlightRepository;
 import com.shradha.flightreservation.repository.PassengerRepository;
 import com.shradha.flightreservation.repository.ReservationRepository;
+import com.shradha.flightreservation.util.EmailUtility;
+import com.shradha.flightreservation.util.PDFGenerator;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -24,6 +27,12 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Autowired
 	private PassengerRepository passengerRepository;
+	
+	@Autowired
+	private PDFGenerator pdfGenerator;
+	
+	@Autowired
+	private EmailUtility emailUtility;
 
 	@Override
 	public Reservation bookFlight(ReservationRequest request) {
@@ -53,6 +62,11 @@ public class ReservationServiceImpl implements ReservationService {
 		theReservation.setCheckedIn(false);
 		
 		Reservation savedReservation = reservationRepo.save(theReservation);
+		
+		String filePath = "D:\\BHARATH THIPPIREDDY\\Reservations\\reservation"+savedReservation.getId()+".pdf";
+		pdfGenerator.generateItenary(savedReservation, filePath);
+		
+		emailUtility.sendItinerary(thePassenger.getEmail(), filePath);
 		
 		return savedReservation;
 	}

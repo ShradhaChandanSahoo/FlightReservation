@@ -2,6 +2,8 @@ package com.shradha.flightreservation.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,22 +22,28 @@ import com.shradha.flightreservation.service.UserService;
 @RequestMapping("user")
 public class UserController {
 	
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	private UserService userService;
 	
 	
 	@GetMapping("/showRegistrationForm")
 	public String showRegistrationForm() {
+		log.info("Inside showRegistrationForm() Method");
 		return "login/registerUser";
 	}
 	@GetMapping("showLoginForm")
 	public String showLoginForm() {
+		log.info("Inside showLoginForm() Method");
 		return "login/login";
 	}
 	
 	@PostMapping("/registerUser")
 	public String userRegistration(@ModelAttribute("user") User user) {
+		log.info("Inside userRegistration");
 		userService.saveUserRegistration(user);
+		log.info("User is Saved:-"+user);
 		return "login/login";
 	}
 	
