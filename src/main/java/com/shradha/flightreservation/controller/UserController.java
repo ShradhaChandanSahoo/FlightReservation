@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shradha.flightreservation.model.User;
+import com.shradha.flightreservation.service.SecurityService;
 import com.shradha.flightreservation.service.UserService;
 
 
@@ -26,6 +28,12 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+	@Autowired
+	private SecurityService securityService;
 	
 	
 	@GetMapping("/showRegistrationForm")
@@ -42,6 +50,7 @@ public class UserController {
 	@PostMapping("/registerUser")
 	public String userRegistration(@ModelAttribute("user") User user) {
 		log.info("Inside userRegistration");
+		user.setPassword(encoder.encode(user.getPassword())); //Here Password is encrypted
 		userService.saveUserRegistration(user);
 		log.info("User is Saved:-"+user);
 		return "login/login";
@@ -78,8 +87,10 @@ public class UserController {
 	
 	@PostMapping("/userLogin")
 	public String userLogin(@RequestParam("email") String email, @RequestParam("password") String password,Model theModel) {
-		User oneUser = userService.findByEmail(email);
-		if(oneUser.getPassword().equals(password)) {
+		//User oneUser = userService.findByEmail(email);
+		boolean loginResponse = securityService.login(email, password);
+		//if(oneUser.getPassword().equals(password)) 
+		if(loginResponse){
 			return "findFlights";
 		}
 		else {
